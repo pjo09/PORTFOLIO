@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Piyush Jaiswal — Student Developer, Creative Thinker & Full-Stack Enthusiast. Building digital experiences that make an impact.">
+  <meta name="theme-color" content="#050505">
+  <title>Piyush Jaiswal — Your Friendly Neighbourhood Developer</title>
+
+  <!-- Google Fonts Preconnect & Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ===================================================== -->
+  <!-- CINEMATIC SPIDER-MAN OPENING INTRO (5-7 SECONDS) -->
+  <!-- ===================================================== -->
+  <div id="introScreen" class="intro-screen" aria-label="Cinematic Opening Intro">
+    <!-- City Skyline Silhouette Background -->
+    <div class="intro-skyline-bg" aria-hidden="true">
+      <svg class="skyline-svg" viewBox="0 0 1440 320" preserveAspectRatio="none" fill="none">
+        <path d="M0,320 L0,210 L30,210 L30,170 L55,170 L55,230 L80,230 L80,140 L110,140 L110,240 L140,240 L140,110 L155,110 L155,80 L165,80 L165,110 L180,110 L180,220 L210,220 L210,160 L240,160 L240,250 L270,250 L270,130 L295,130 L295,95 L305,95 L305,130 L320,130 L320,230 L350,230 L350,180 L380,180 L380,240 L410,240 L410,120 L445,120 L445,220 L480,220 L480,150 L510,150 L510,240 L540,240 L540,100 L555,100 L555,60 L565,60 L565,100 L580,100 L580,210 L610,210 L610,170 L640,170 L640,250 L670,250 L670,130 L700,130 L700,220 L730,220 L730,110 L755,110 L755,75 L765,75 L765,110 L785,110 L785,230 L820,230 L820,160 L850,160 L850,240 L880,240 L880,140 L910,140 L910,210 L940,210 L940,90 L955,90 L955,50 L965,50 L965,90 L985,90 L985,220 L1020,220 L1020,170 L1050,170 L1050,250 L1080,250 L1080,120 L1110,120 L1110,230 L1140,230 L1140,150 L1170,150 L1170,220 L1200,220 L1200,105 L1215,105 L1215,70 L1225,70 L1225,105 L1245,105 L1245,240 L1280,240 L1280,180 L1310,180 L1310,250 L1340,250 L1340,130 L1370,130 L1370,210 L1400,210 L1400,160 L1440,160 L1440,320 Z" fill="#050508"/>
+      </svg>
+      <div class="skyline-red-beacons">
+        <span class="beacon beacon-1"></span>
+        <span class="beacon beacon-2"></span>
+        <span class="beacon beacon-3"></span>
+        <span class="beacon beacon-4"></span>
+      </div>
+    </div>
+
+    <!-- Canvas for Floating Dust Embers & Subtle Web Strands -->
+    <canvas id="introCanvas" class="intro-canvas"></canvas>
+
+    <!-- Scene 1: Corner Spider Web Strands -->
+    <div class="intro-corner-web web-tl" aria-hidden="true">
+      <svg viewBox="0 0 100 100" fill="none" stroke="currentColor">
+        <path d="M0,0 L100,100 M0,0 L70,100 M0,0 L100,70 M0,0 L40,100 M0,0 L100,40 M0,0 L15,100 M0,0 L100,15"/>
+        <path d="M20,0 Q20,20 0,20 M40,0 Q40,40 0,40 M60,0 Q60,60 0,60 M80,0 Q80,80 0,80 M100,0 Q100,100 0,100"/>
+      </svg>
+    </div>
+    <div class="intro-corner-web web-tr" aria-hidden="true">
+      <svg viewBox="0 0 100 100" fill="none" stroke="currentColor">
+        <path d="M100,0 L0,100 M100,0 L30,100 M100,0 L0,70 M100,0 L60,100 M100,0 L0,40 M100,0 L85,100 M100,0 L0,15"/>
+        <path d="M80,0 Q80,20 100,20 M60,0 Q60,40 100,40 M40,0 Q40,60 100,60 M20,0 Q20,80 100,80 M0,0 Q0,100 100,100"/>
+      </svg>
+    </div>
+
+    <!-- Scene 3: Fast Web Strands Shooting Across Screen -->
+    <div class="intro-shoot-web strand-left" id="strandLeft" aria-hidden="true"></div>
+    <div class="intro-shoot-web strand-right" id="strandRight" aria-hidden="true"></div>
+    <div class="intro-web-impact" id="webImpact" aria-hidden="true"></div>
+
+    <!-- HUD Telemetry Markers -->
+    <div class="intro-hud hud-top-left">
+      <span class="hud-glitch">SYS // PROTOCOL 2026</span>
+      <span class="hud-sub">NEW YORK NIGHTLINE // DIGITAL WORLD</span>
+    </div>
+    <div class="intro-hud hud-top-right">
+      <span class="hud-status-dot"></span>
+      <span class="hud-sub" id="introClock">RADAR ACTIVE</span>
+    </div>
+    <div class="intro-hud hud-bottom-left">
+      <span class="hud-coord">LOC // 40.7128° N, 74.0060° W</span>
+      <span class="hud-sub">STATUS // SPIDER PROTOCOL STANDBY</span>
+    </div>
+
+    <!-- Central Cinematic Hero Container -->
+    <div class="intro-center-box" id="introCenterBox">
+      <!-- Scene 2: Original Glowing Geometric Spider Emblem -->
+      <div class="intro-spider-symbol" id="introSpiderSymbol">
+        <svg class="spider-emblem-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Head & Fangs -->
+          <polygon points="50,22 55,29 45,29" fill="#E62429"/>
+          <polygon points="46,30 44,35 48,31" fill="#E62429"/>
+          <polygon points="54,30 56,35 52,31" fill="#E62429"/>
+          <!-- Thorax & Abdomen -->
+          <polygon points="50,31 57,40 50,54 43,40" fill="#E62429"/>
+          <polygon points="50,57 60,72 50,86 40,72" fill="#E62429"/>
+          <!-- Left Upper Leg -->
+          <path class="spider-leg" d="M47,35 L28,24 L16,36" stroke="#E62429" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Left Middle Leg 1 -->
+          <path class="spider-leg" d="M45,41 L22,38 L14,52" stroke="#E62429" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Left Middle Leg 2 -->
+          <path class="spider-leg" d="M46,47 L24,56 L20,74" stroke="#E62429" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Left Bottom Leg -->
+          <path class="spider-leg" d="M47,53 L32,68 L30,88" stroke="#E62429" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Right Upper Leg -->
+          <path class="spider-leg" d="M53,35 L72,24 L84,36" stroke="#E62429" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Right Middle Leg 1 -->
+          <path class="spider-leg" d="M55,41 L78,38 L86,52" stroke="#E62429" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Right Middle Leg 2 -->
+          <path class="spider-leg" d="M54,47 L76,56 L80,74" stroke="#E62429" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Right Bottom Leg -->
+          <path class="spider-leg" d="M53,53 L68,68 L70,88" stroke="#E62429" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div class="symbol-glow-pulse"></div>
+      </div>
+
+      <!-- Live Stage Badge -->
+      <div class="intro-badge" id="introBadge">
+        <span class="intro-badge-pulse"></span>
+        <span id="introBadgeText">SPIDER PROTOCOL INITIALIZING</span>
+      </div>
+
+      <!-- Scene 4: Name Reveal with Web Lines & Light Sweep -->
+      <div class="name-reveal-wrap">
+        <h1 class="intro-title" aria-label="Piyush Jaiswal">
+          <span class="intro-name-line first-name">
+            <span class="intro-char">P</span><span class="intro-char">I</span><span class="intro-char">Y</span><span class="intro-char">U</span><span class="intro-char">S</span><span class="intro-char">H</span>
+          </span>
+          <span class="intro-name-line last-name">
+            <span class="intro-char highlight-red">J</span><span class="intro-char highlight-red">A</span><span class="intro-char highlight-red">I</span><span class="intro-char highlight-red">S</span><span class="intro-char highlight-red">W</span><span class="intro-char highlight-red">A</span><span class="intro-char highlight-red">L</span>
+          </span>
+        </h1>
+        <div class="name-web-underline" id="nameUnderline"></div>
+      </div>
+
+      <!-- Scene 5: Tagline & Enter Message -->
+      <div class="intro-welcome-group">
+        <p class="intro-sub-hero">YOUR FRIENDLY NEIGHBOURHOOD DEVELOPER</p>
+        <p class="intro-enter-msg">
+          <span class="enter-bracket">[</span>
+          <span class="enter-text">ENTER MY DIGITAL WORLD</span>
+          <span class="enter-web-icon">🕸️</span>
+          <span class="enter-bracket">]</span>
+        </p>
+      </div>
+
+      <!-- High-Tech Progress HUD -->
+      <div class="intro-loader-wrap">
+        <div class="loader-top-meta">
+          <span class="loader-step-name" id="introStepName">PHASE 01 / 04</span>
+          <span class="loader-counter-val" id="introCounter">00%</span>
+        </div>
+        <div class="intro-bar-track">
+          <div class="intro-bar-fill" id="introBarFill"></div>
+          <div class="intro-bar-glow-head" id="introBarGlow"></div>
+        </div>
+        <div class="loader-bottom-meta">
+          <span class="loader-sub-text" id="introSubText">CALIBRATING WEB SYSTEMS...</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scene 6: Web Mandala Transition Mask -->
+    <div class="intro-web-mask-overlay" id="webMaskOverlay" aria-hidden="true">
+      <svg class="web-mandala-svg" viewBox="0 0 600 600" fill="none" stroke="#E62429">
+        <!-- Radial Strands -->
+        <line x1="300" y1="300" x2="300" y2="0" stroke-width="1.5"/>
+        <line x1="300" y1="300" x2="512" y2="88" stroke-width="1.5"/>
+        <line x1="300" y1="300" x2="600" y2="300" stroke-width="1.5"/>
+        <line x1="300" y1="300" x2="512" y2="512" stroke-width="1.5"/>
+        <line x1="300" y1="300" x2="300" y2="600" stroke-width="1.5"/>
+        <line x1="300" y1="300" x2="88" y2="512" stroke-width="1.5"/>
+        <line x1="300" y1="300" x2="0" y2="300" stroke-width="1.5"/>
+        <line x1="300" y1="300" x2="88" y2="88" stroke-width="1.5"/>
+        <!-- Web Rings -->
+        <polygon points="300,260 328,272 340,300 328,328 300,340 272,328 260,300 272,272" stroke-width="1.2"/>
+        <polygon points="300,220 356,244 380,300 356,356 300,380 244,356 220,300 244,244" stroke-width="1.4"/>
+        <polygon points="300,170 392,208 430,300 392,392 300,430 208,392 170,300 208,208" stroke-width="1.6"/>
+        <polygon points="300,110 434,166 490,300 434,434 300,490 166,434 110,300 166,166" stroke-width="1.8"/>
+        <polygon points="300,40 484,116 560,300 484,484 300,560 116,484 40,300 116,116" stroke-width="2"/>
+      </svg>
+    </div>
+
+    <!-- Skip Intro Button -->
+    <button class="intro-skip-btn" id="introSkipBtn" aria-label="Skip introduction">
+      Skip Intro <span>→</span>
+    </button>
+  </div>
+
+  <!-- ===================================================== -->
+  <!-- CUSTOM CURSOR (DESKTOP SPIDER RED RETICLE & WEB RIPPLE) -->
+  <!-- ===================================================== -->
+  <div class="custom-cursor" id="customCursor" aria-hidden="true">
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing">
+      <div class="cursor-crosshair ch-top"></div>
+      <div class="cursor-crosshair ch-bottom"></div>
+      <div class="cursor-crosshair ch-left"></div>
+      <div class="cursor-crosshair ch-right"></div>
+      <span class="cursor-badge" id="cursorBadge">TARGET</span>
+    </div>
+  </div>
+
+  <!-- Noise Grain & Atmospheric Red Ambience -->
+  <div class="noise-overlay" aria-hidden="true"></div>
+  <div class="ambient-glow glow-spider-1" aria-hidden="true"></div>
+  <div class="ambient-glow glow-spider-2" aria-hidden="true"></div>
+  <div class="ambient-glow glow-spider-3" aria-hidden="true"></div>
+
+  <!-- ===================================================== -->
+  <!-- STICKY SPIDER-MAN INSPIRED NAVBAR -->
+  <!-- ===================================================== -->
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      <a class="logo magnetic" href="#home" aria-label="Piyush Jaiswal Homepage">
+        <!-- Original Minimal Spider Emblem SVG -->
+        <span class="logo-spider-icon" aria-hidden="true">
+          <svg viewBox="0 0 100 100" fill="none">
+            <polygon points="50,22 55,29 45,29" fill="#E62429"/>
+            <polygon points="50,31 57,40 50,54 43,40" fill="#E62429"/>
+            <polygon points="50,57 60,72 50,86 40,72" fill="#E62429"/>
+            <path d="M47,35 L28,24 L16,36" stroke="#E62429" stroke-width="3" stroke-linecap="round"/>
+            <path d="M45,41 L22,38 L14,52" stroke="#E62429" stroke-width="3" stroke-linecap="round"/>
+            <path d="M46,47 L24,56 L20,74" stroke="#E62429" stroke-width="3" stroke-linecap="round"/>
+            <path d="M47,53 L32,68 L30,88" stroke="#E62429" stroke-width="3" stroke-linecap="round"/>
+            <path d="M53,35 L72,24 L84,36" stroke="#E62429" stroke-width="3" stroke-linecap="round"/>
+            <path d="M55,41 L78,38 L86,52" stroke="#E62429" stroke-width="3" stroke-linecap="round"/>
+            <path d="M54,47 L76,56 L80,74" stroke="#E62429" stroke-width="3" stroke-linecap="round"/>
+            <path d="M53,53 L68,68 L70,88" stroke="#E62429" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span class="logo-text">PJ<span class="logo-dot">.</span></span>
+      </a>
+
+      <nav class="nav-links" id="navLinks" aria-label="Main Navigation">
+        <a href="#home" class="nav-link active"><span>01</span>Home</a>
+        <a href="#about" class="nav-link"><span>02</span>About</a>
+        <a href="#skills" class="nav-link"><span>03</span>Skills</a>
+        <a href="#projects" class="nav-link"><span>04</span>Projects</a>
+        <a href="#education" class="nav-link"><span>05</span>Education</a>
+        <a class="nav-cta magnetic" href="#contact">
+          <span class="cta-spider-dot"></span>
+          <span>Send Signal</span>
+          <svg class="cta-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </nav>
+
+      <!-- Mobile Hamburger Toggle -->
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle Navigation Menu" aria-expanded="false">
+        <span class="hamburger-line line-1"></span>
+        <span class="hamburger-line line-2"></span>
+        <span class="hamburger-line line-3"></span>
+      </button>
+    </div>
+
+    <!-- Mobile Drawer Overlay with Spider-Web Pattern -->
+    <div class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
+      <div class="mobile-drawer-content">
+        <div class="mobile-drawer-header">
+          <span class="drawer-label">SPIDER PROTOCOL // MENU</span>
+        </div>
+        <div class="mobile-nav-links">
+          <a href="#home" class="mobile-link"><span>01</span> Home</a>
+          <a href="#about" class="mobile-link"><span>02</span> Behind The Mask</a>
+          <a href="#skills" class="mobile-link"><span>03</span> Tech Arsenal</a>
+          <a href="#projects" class="mobile-link"><span>04</span> Missions</a>
+          <a href="#education" class="mobile-link"><span>05</span> Origin Story</a>
+          <a href="#contact" class="mobile-link mobile-cta"><span>06</span> Send Signal ↗</a>
+        </div>
+        <div class="mobile-drawer-footer">
+          <p class="drawer-contact-title">Direct Signal & Transmissions</p>
+          <a href="https://www.linkedin.com/in/piyush-kumar-jaiswal-761491400/" target="_blank" rel="noopener noreferrer" class="drawer-social-link">LinkedIn Signal ↗</a>
+          <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="drawer-social-link">GitHub Repository ↗</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="mainContent">
+    <!-- ===================================================== -->
+    <!-- HERO SECTION — CINEMATIC SPIDER UNIVERSE -->
+    <!-- ===================================================== -->
+    <section class="hero section" id="home">
+      <!-- Background City Skyline Silhouette -->
+      <div class="hero-skyline-silhouette" aria-hidden="true">
+        <svg viewBox="0 0 1440 260" preserveAspectRatio="none" fill="none">
+          <path d="M0,260 L0,170 L40,170 L40,130 L70,130 L70,190 L100,190 L100,110 L130,110 L130,200 L160,200 L160,80 L175,80 L175,50 L185,50 L185,80 L200,80 L200,180 L240,180 L240,120 L270,120 L270,210 L310,210 L310,90 L325,90 L325,60 L335,60 L335,90 L350,90 L350,190 L390,190 L390,140 L430,140 L430,200 L470,200 L470,100 L510,100 L510,180 L550,180 L550,120 L590,120 L590,210 L630,210 L630,70 L645,70 L645,40 L655,40 L655,70 L670,70 L670,180 L710,180 L710,130 L750,130 L750,210 L790,210 L790,90 L830,90 L830,190 L870,190 L870,140 L910,140 L910,220 L950,220 L950,60 L965,60 L965,30 L975,30 L975,60 L990,60 L990,180 L1030,180 L1030,120 L1070,120 L1070,200 L1110,200 L1110,100 L1150,100 L1150,190 L1190,190 L1190,70 L1205,70 L1205,40 L1215,40 L1215,70 L1230,70 L1230,200 L1270,200 L1270,140 L1310,140 L1310,210 L1350,210 L1350,110 L1390,110 L1390,170 L1440,170 L1440,260 Z" fill="rgba(8, 8, 12, 0.7)"/>
+        </svg>
+        <span class="hero-beacon b-1"></span>
+        <span class="hero-beacon b-2"></span>
+        <span class="hero-beacon b-3"></span>
+      </div>
+
+      <!-- Corner Subtle Web Filigree -->
+      <div class="hero-web-corner corner-tr" aria-hidden="true">
+        <svg viewBox="0 0 120 120" fill="none" stroke="rgba(230, 36, 41, 0.15)">
+          <path d="M120,0 L0,120 M120,0 L35,120 M120,0 L0,85 M120,0 L70,120 M120,0 L0,50"/>
+          <path d="M100,0 Q100,20 120,20 M80,0 Q80,40 120,40 M60,0 Q60,60 120,60 M40,0 Q40,80 120,80 M20,0 Q20,100 120,100"/>
+        </svg>
+      </div>
+
+      <div class="hero-grid">
+        <div class="hero-content">
+          <!-- Floating Status Label -->
+          <div class="hero-eyebrow-wrap reveal">
+            <span class="spider-status-badge">
+              <span class="spider-status-dot"></span>
+              <span class="status-text">DIGITAL WORLD // DEVELOPER MODE</span>
+            </span>
+          </div>
+
+          <!-- Main Heading -->
+          <h1 class="hero-title reveal">
+            Building Digital<br>
+            Experiences That<br>
+            <span class="spider-text-glow">Make An Impact.</span>
+          </h1>
+
+          <!-- Identity Callout -->
+          <div class="hero-identity reveal">
+            <span class="identity-name">Piyush Jaiswal</span>
+            <span class="identity-divider">//</span>
+            <span class="identity-role">Student Developer • Creative Thinker • Full-Stack Enthusiast</span>
+          </div>
+
+          <!-- Supporting Text -->
+          <p class="hero-description reveal">
+            I'm Piyush Jaiswal — a student developer who enjoys turning ideas into useful digital experiences. Crafting responsive web applications, reliable backend systems, and modern interactive interfaces with purpose and precision.
+          </p>
+
+          <!-- Action CTAs -->
+          <div class="hero-actions reveal">
+            <a href="#projects" class="btn btn-spider-primary magnetic">
+              <span>EXPLORE MY WORK</span>
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <a href="#contact" class="btn btn-spider-secondary magnetic">
+              <span>LET'S CONNECT</span>
+            </a>
+          </div>
+
+          <!-- Hero Socials -->
+          <div class="hero-socials reveal">
+            <span class="social-label">NETWORK:</span>
+            <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="social-link magnetic">
+              GitHub <span>↗</span>
+            </a>
+            <span class="social-separator"></span>
+            <a href="https://www.linkedin.com/in/piyush-kumar-jaiswal-761491400/" target="_blank" rel="noopener noreferrer" class="social-link magnetic">
+              LinkedIn <span>↗</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Profile Visual in Spider Tech Frame -->
+        <div class="hero-visual reveal" id="heroVisual">
+          <div class="visual-wrapper">
+            <div class="photo-red-glow"></div>
+            
+            <!-- Orbit rings with spider web aesthetic -->
+            <div class="spider-orbit orbit-one"></div>
+            <div class="spider-orbit orbit-two"></div>
+
+            <!-- Profile Photo Container in High-Tech Shield Frame -->
+            <div class="photo-frame spider-frame" id="photoFrame">
+              <img src="assets/profile.jpg" alt="Piyush Jaiswal — Student Developer and Creator" fetchpriority="high" loading="eager">
+              <div class="photo-overlay"></div>
+              <div class="photo-corners">
+                <span class="corner-spider tl"></span>
+                <span class="corner-spider tr"></span>
+                <span class="corner-spider bl"></span>
+                <span class="corner-spider br"></span>
+              </div>
+            </div>
+
+            <!-- Floating Glass Badges -->
+            <div class="floating-badge badge-top magnetic-element">
+              <div class="badge-icon spider-icon">🕷️</div>
+              <div class="badge-text">
+                <strong>Creative Thinker</strong>
+                <small>Always learning & iterating</small>
+              </div>
+            </div>
+
+            <div class="floating-badge badge-bottom magnetic-element">
+              <div class="badge-icon code-symbol">&lt;/&gt;</div>
+              <div class="badge-text">
+                <strong>Full-Stack Lab</strong>
+                <small>Node.js • Express • MongoDB</small>
+              </div>
+            </div>
+
+            <div class="hero-index-tag">
+              <span class="index-accent">01</span>
+              <span class="index-sub">// PORTFOLIO</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hanging Web Thread Scroll Indicator -->
+      <a href="#about" class="scroll-indicator-web" aria-label="Swing down to About section">
+        <div class="web-strand-track">
+          <div class="web-spider-bead"></div>
+        </div>
+        <span class="scroll-label">SWING DOWN TO EXPLORE</span>
+      </a>
+    </section>
+
+    <!-- ===================================================== -->
+    <!-- ABOUT SECTION — BEHIND THE MASK -->
+    <!-- ===================================================== -->
+    <section class="section about-section" id="about">
+      <div class="section-header reveal">
+        <div class="section-tag">
+          <span class="tag-number">01</span>
+          <span class="tag-title">BEHIND THE MASK</span>
+        </div>
+        <h2 class="section-title">
+          Every great creation starts with <span class="spider-text-glow">curiosity.</span>
+        </h2>
+        <p class="section-subtitle">
+          The drive to understand how systems operate under the hood, and building software that delivers genuine real-world value.
+        </p>
+      </div>
+
+      <div class="about-grid">
+        <!-- Column 1: Portrait in Dark Frame with Red Corner Accents -->
+        <div class="about-visual-column reveal">
+          <div class="about-portrait-card spotlight-card">
+            <div class="about-image-wrap">
+              <img src="assets/profile.jpg" alt="Piyush Jaiswal portrait" loading="lazy">
+              <div class="portrait-glass-gradient"></div>
+            </div>
+            <div class="portrait-meta">
+              <div class="meta-status">
+                <span class="status-pulse-red"></span>
+                <span>BASED IN INDIA</span>
+              </div>
+              <div class="meta-tag">CS UNDERGRADUATE</div>
+            </div>
+          </div>
+
+          <div class="about-quote-card spotlight-card">
+            <span class="quote-symbol">“</span>
+            <p>Great power in software comes from great responsibility in code — building robust, accessible, and meaningful tools that make a real difference.</p>
+          </div>
+        </div>
+
+        <!-- Column 2: The Three Strategic Pillars -->
+        <div class="about-content-column">
+          <div class="about-card spotlight-card reveal">
+            <h3 class="about-lead">
+              Student developer passionate about crafting scalable web applications and practical products.
+            </h3>
+            
+            <p class="about-body">
+              I'm <strong>Piyush Jaiswal</strong>, an engineering student fascinated by the creative logic of web development, backend architectures, and human-centric software.
+            </p>
+
+            <p class="about-body">
+              My journey began with a natural curiosity: discovering how dynamic websites communicate, authenticate users, and manage state seamlessly across the globe. Over time, that curiosity transformed into writing hands-on code, designing RESTful APIs, and developing complete digital platforms.
+            </p>
+
+            <p class="about-body">
+              Whether building responsive frontend layouts with semantic HTML and CSS or engineering server routing and data pipelines with Node.js, Express, and MongoDB, I approach development with methodical discipline and a creative problem-solving mindset.
+            </p>
+          </div>
+
+          <!-- Three Distinct Information Blocks -->
+          <div class="about-stats-grid reveal">
+            <!-- Block 1: WHAT I DO -->
+            <div class="stat-card spotlight-card">
+              <div class="stat-top">
+                <span class="stat-num">01</span>
+                <span class="stat-icon">🕸️</span>
+              </div>
+              <h4 class="stat-title">WHAT I DO</h4>
+              <p class="stat-desc">Developing responsive full-stack web applications, architecting RESTful APIs, and translating concepts into clean, functional code.</p>
+            </div>
+
+            <!-- Block 2: WHAT I AM LEARNING -->
+            <div class="stat-card spotlight-card">
+              <div class="stat-top">
+                <span class="stat-num">02</span>
+                <span class="stat-icon">⚙️</span>
+              </div>
+              <h4 class="stat-title">WHAT I AM LEARNING</h4>
+              <p class="stat-desc">Deepening knowledge in database architecture with MongoDB/Mongoose, JWT authentication, and core Data Structures & Algorithms in Java.</p>
+            </div>
+
+            <!-- Block 3: WHAT I WANT TO BUILD -->
+            <div class="stat-card spotlight-card">
+              <div class="stat-top">
+                <span class="stat-num">03</span>
+                <span class="stat-icon">🚀</span>
+              </div>
+              <h4 class="stat-title">WHAT I WANT TO BUILD</h4>
+              <p class="stat-desc">Impactful digital platforms that solve practical, everyday challenges for students, communities, and real-world users.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================== -->
+    <!-- SKILLS SECTION — SPIDER TECH LAB -->
+    <!-- ===================================================== -->
+    <section class="section skills-section" id="skills">
+      <div class="section-header reveal">
+        <div class="section-tag">
+          <span class="tag-number">02</span>
+          <span class="tag-title">MY TECH ARSENAL</span>
+        </div>
+        <h2 class="section-title">
+          Spider Tech <span class="spider-text-glow">Laboratory.</span>
+        </h2>
+        <p class="section-subtitle">
+          Carefully chosen technologies, frameworks, and database architectures deployed across my development stack.
+        </p>
+      </div>
+
+      <div class="skills-grid">
+        <!-- Frontend Panel -->
+        <div class="skill-category-card spotlight-card reveal">
+          <div class="tech-scan-line"></div>
+          <div class="category-header">
+            <div class="category-icon-box spider-tech-box">
+              <span class="category-code">&lt;/&gt;</span>
+            </div>
+            <div class="category-info">
+              <span class="category-num">// 01 • FRONTEND</span>
+              <h3 class="category-title">Client-Side Engineering</h3>
+            </div>
+          </div>
+
+          <p class="category-desc">
+            Constructing responsive, accessible interfaces with clean markup, modular styles, and fluid vanilla JavaScript interactions.
+          </p>
+
+          <div class="skill-tags">
+            <div class="skill-tag-item">
+              <span class="tag-bullet-red"></span>
+              <strong>HTML5</strong>
+              <small>Semantic structure</small>
+            </div>
+            <div class="skill-tag-item">
+              <span class="tag-bullet-red"></span>
+              <strong>CSS3</strong>
+              <small>Grid, Flexbox & Motion</small>
+            </div>
+            <div class="skill-tag-item">
+              <span class="tag-bullet-red"></span>
+              <strong>JavaScript</strong>
+              <small>ES6+, DOM & Async Logic</small>
+            </div>
+            <div class="skill-tag-item">
+              <span class="tag-bullet-red"></span>
+              <strong>Responsive UI</strong>
+              <small>Mobile-First Architecture</small>
+            </div>
+          </div>
+        </div>
+
+        <!-- Backend Panel -->
+        <div class="skill-category-card spotlight-card reveal">
+          <div class="tech-scan-line"></div>
+          <div class="category-header">
+            <div class="category-icon-box spider-tech-box">
+              <span class="category-code">⚡</span>
+            </div>
+            <div class="category-info">
+              <span class="category-num">// 02 • BACKEND</span>
+              <h3 class="category-title">Server & API Architecture</h3>
+            </div>
+          </div>
+
+          <p class="category-desc">
+            Engineering robust server runtimes, structured REST endpoints, route handlers, and middleware controllers.
+          </p>
+
+          <div class="skill-tags">
+            <div class="skill-tag-item">
+              <span class="tag-bullet-red"></span>
+              <strong>Node.js</strong>
+              <small>Event-driven runtime</small>
+            </div>
+            <div class="skill-tag-item">
+              <span class="tag-bullet-red"></span>
+              <strong>Express.js</strong>
+              <small>Routing & middleware pipeline</small>
+            </div>
+            <div class="skill-tag-item">
+              <span class="tag-bullet-red"></span>
+              <strong>REST APIs</strong>
+              <small>Endpoint architecture</small>
+            </div>
+            <div class="skill-tag-item">
+              <span class="tag-bullet-red"></span>
+              <strong>MVC Patterns</strong>
+              <small>Separation of concerns</small>
+            </div>
+          </div>
+        </div>
+
+        <!-- Database Panel -->
+        <div class="skill-category-card spotlight-card reveal">
+          <div class="tech-scan-line"></div>
+          <div class="category-header">
+            <div class="category-icon-box spider-tech-box">
+              <span class="category-code">🗄</span>
+            </div>
+            <div class="category-info">
+              <span class="category-num">// 03 • DATABASE</span>
+              <h3 class="category-title">Data Storage & Modeling</h3>
+            </div>
+          </div>
+
+          <p class="category-desc">
+            Designing schema models, managing relationships, handling validation rules, and maintaining reliable queries.
+          </p>
+
+          <div class="skill-tags">
+            <div class="skill-tag-item">
+              <span class="tag-bullet-red"></span>
+              <strong>MongoDB</strong>
+              <small>Document database</small>
+            </div>
+            <div class="skill-tag-item">
+              <span class="tag-bullet-red"></span>
+              <strong>Mongoose ODM</strong>
+              <small>Schema validation & hooks</small>
+            </div>
+            <div class="skill-tag-item">
+              <span class="tag-bullet-red"></span>
+              <strong>CRUD Operations</strong>
+              <small>Lifecycle data management</small>
+            </div>
+            <div class="skill-tag-item">
+              <span class="tag-bullet-red"></span>
+              <strong>Data Integrity</strong>
+              <small>Indexing & query safety</small>
+            </div>
+          </div>
+        </div>
+
+        <!-- Authentication & Workflow Panel -->
+        <div class="skill-category-card spotlight-card reveal">
+          <div class="tech-scan-line"></div>
+          <div class="category-header">
+            <div class="category-icon-box spider-tech-box">
+              <span class="category-code">🔒</span>
+            </div>
+            <div class="category-info">
+              <span class="category-num">// 04 • SECURITY & TOOLS</span>
+              <h3 class="category-title">Auth & Developer Toolkit</h3>
+            </div>
+          </div>
+
+          <p class="category-desc">
+            Implementing secure authentication token workflows, version control, and modern deployment pipelines.
+          </p>
+
+          <div class="skill-tags">
+            <div class="skill-tag-item">
+              <span class="tag-bullet-red"></span>
+              <strong>JWT Authentication</strong>
+              <small>Token verification & security</small>
+            </div>
+            <div class="skill-tag-item">
+              <span class="tag-bullet-red"></span>
+              <strong>Git & GitHub</strong>
+              <small>Version control & tracking</small>
+            </div>
+            <div class="skill-tag-item">
+              <span class="tag-bullet-red"></span>
+              <strong>Vercel Deployment</strong>
+              <small>Cloud production hosting</small>
+            </div>
+            <div class="skill-tag-item">
+              <span class="tag-bullet-red"></span>
+              <strong>Java</strong>
+              <small>Core CS & OOP principles</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================== -->
+    <!-- PROJECTS SECTION — MISSIONS & CREATIONS -->
+    <!-- ===================================================== -->
+    <section class="section projects-section" id="projects">
+      <div class="section-header reveal">
+        <div class="section-tag">
+          <span class="tag-number">03</span>
+          <span class="tag-title">MISSIONS & CREATIONS</span>
+        </div>
+        <h2 class="section-title">
+          Mission 001: <span class="spider-text-glow">Campora.</span>
+        </h2>
+        <p class="section-subtitle">
+          A full-stack student accommodation platform designed to connect students with property owners and simplify student housing discovery.
+        </p>
+      </div>
+
+      <article class="campora-showcase spotlight-card reveal">
+        <!-- Left: Browser Window Preview with Red Lighting -->
+        <div class="campora-preview-column">
+          <div class="browser-frame spider-browser-frame">
+            <div class="browser-header">
+              <div class="browser-traffic-lights">
+                <span class="light light-red"></span>
+                <span class="light light-dark"></span>
+                <span class="light light-dark"></span>
+              </div>
+
+              <div class="browser-url-bar">
+                <svg class="url-lock-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#E62429" stroke-width="2">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+                <span class="url-text">https://camporastudent.vercel.app/</span>
+              </div>
+
+              <a href="https://camporastudent.vercel.app/" target="_blank" rel="noopener noreferrer" class="browser-external-link magnetic" aria-label="Open Campora in new tab">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <path d="M2.5 11.5L11.5 2.5M11.5 2.5H4M11.5 2.5V10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            </div>
+
+            <!-- Iframe Container with Red Laser Overlay -->
+            <div class="browser-viewport">
+              <iframe
+                src="https://camporastudent.vercel.app/"
+                title="Campora Live Web Application Preview"
+                loading="lazy"
+                class="campora-iframe"
+                id="camporaIframe">
+              </iframe>
+
+              <!-- Interactive Launch Overlay -->
+              <div class="viewport-overlay" id="viewportOverlay">
+                <div class="overlay-brand">
+                  <span class="overlay-logo">campora<span class="dot-red">.</span></span>
+                  <p class="overlay-tagline">Finding a place that feels like home.</p>
+                </div>
+                <div class="overlay-actions">
+                  <a href="https://camporastudent.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-spider-primary magnetic">
+                    <span>EXPLORE LIVE MISSION ↗</span>
+                  </a>
+                </div>
+              </div>
+
+              <div class="preview-badge spider-preview-badge">
+                <span class="live-dot-pulse-red"></span>
+                <span>FEATURED MISSION // 001 LIVE</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Project Narrative & Technical Details -->
+        <div class="campora-details-column">
+          <div class="project-header-meta">
+            <span class="badge-featured-spider">FEATURED MISSION // 001</span>
+            <span class="badge-index">01 / 01</span>
+          </div>
+
+          <div class="project-brand-row">
+            <h3 class="campora-brand-title">campora<span class="dot-red">.</span></h3>
+            <span class="project-type-pill spider-pill">Student Housing Platform</span>
+          </div>
+
+          <h4 class="campora-heading">
+            Connecting students with verified PGs, hostels & shared flats.
+          </h4>
+
+          <p class="campora-description">
+            Campora is a student accommodation platform designed to connect students with property owners and simplify the process of finding suitable accommodation. Built to eliminate middlemen, provide transparent pricing, and offer verified property listings near campuses.
+          </p>
+
+          <!-- Core Feature List -->
+          <div class="campora-feature-list">
+            <div class="feature-row">
+              <div class="feature-number spider-num">01</div>
+              <div class="feature-info">
+                <strong>Student Authentication & Profiles</strong>
+                <span>Secure sign-up, Google authentication, and user profile management.</span>
+              </div>
+            </div>
+
+            <div class="feature-row">
+              <div class="feature-number spider-num">02</div>
+              <div class="feature-info">
+                <strong>Property Discovery & Dynamic Filters</strong>
+                <span>Filtering by pricing, room type, distance from college, and essential amenities.</span>
+              </div>
+            </div>
+
+            <div class="feature-row">
+              <div class="feature-number spider-num">03</div>
+              <div class="feature-info">
+                <strong>Dedicated Owner Dashboard</strong>
+                <span>Intuitive management interface for property owners to publish and edit listings.</span>
+              </div>
+            </div>
+
+            <div class="feature-row">
+              <div class="feature-number spider-num">04</div>
+              <div class="feature-info">
+                <strong>Admin Verification Workflow</strong>
+                <span>Listing review and approval mechanism ensuring platform safety and trust.</span>
+              </div>
+            </div>
+
+            <div class="feature-row">
+              <div class="feature-number spider-num">05</div>
+              <div class="feature-info">
+                <strong>Booking Inquiries & Direct Connect</strong>
+                <span>Direct communication channels between student residents and property owners.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tech Stack Tags -->
+          <div class="project-tech-stack">
+            <span class="tech-tag spider-tech-tag">HTML5</span>
+            <span class="tech-tag spider-tech-tag">CSS3</span>
+            <span class="tech-tag spider-tech-tag">JavaScript (ES6+)</span>
+            <span class="tech-tag spider-tech-tag">Node.js</span>
+            <span class="tech-tag spider-tech-tag">Express.js</span>
+            <span class="tech-tag spider-tech-tag">MongoDB</span>
+            <span class="tech-tag spider-tech-tag">JWT Auth</span>
+          </div>
+
+          <!-- Action CTAs -->
+          <div class="campora-cta-group">
+            <a href="https://camporastudent.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-spider-primary magnetic">
+              <span>EXPLORE LIVE MISSION</span>
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M2.5 11.5L11.5 2.5M11.5 2.5H4M11.5 2.5V10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+
+            <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="btn btn-spider-secondary magnetic">
+              <span>VIEW MISSION CODE</span>
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M2.5 11.5L11.5 2.5M11.5 2.5H4M11.5 2.5V10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- ===================================================== -->
+    <!-- EDUCATION SECTION — MY ORIGIN STORY -->
+    <!-- ===================================================== -->
+    <section class="section education-section" id="education">
+      <div class="section-header reveal">
+        <div class="section-tag">
+          <span class="tag-number">04</span>
+          <span class="tag-title">MY ORIGIN STORY</span>
+        </div>
+        <h2 class="section-title">
+          Academic <span class="spider-text-glow">Foundations.</span>
+        </h2>
+        <p class="section-subtitle">
+          Where the engineering instincts were forged — mastering core computer science principles and software engineering.
+        </p>
+      </div>
+
+      <!-- Web Strand Vertical Timeline -->
+      <div class="education-timeline-spider reveal">
+        <div class="web-timeline-strand"></div>
+
+        <div class="timeline-card-spider spotlight-card">
+          <div class="timeline-spider-node">
+            <span class="spider-node-core"></span>
+            <span class="spider-node-pulse"></span>
+          </div>
+
+          <div class="timeline-content">
+            <div class="timeline-meta">
+              <span class="timeline-badge-red">CURRENTLY ENROLLED</span>
+              <span class="timeline-period">UNDERGRADUATE</span>
+            </div>
+
+            <h3 class="timeline-degree">Computer Science & Engineering</h3>
+            <p class="timeline-institution">Bachelor of Technology (B.Tech)</p>
+
+            <p class="timeline-description">
+              Actively mastering academic coursework in Data Structures & Algorithms, Object-Oriented Programming (Java), Operating Systems, Database Management Systems, and Computer Networks. Translating theoretical principles into production-grade full-stack web applications and robust architecture.
+            </p>
+
+            <div class="timeline-tags">
+              <span class="time-tag spider-tag">Data Structures & Algorithms</span>
+              <span class="time-tag spider-tag">Object-Oriented Programming</span>
+              <span class="time-tag spider-tag">Database Management</span>
+              <span class="time-tag spider-tag">Web Technologies</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================== -->
+    <!-- CONTACT SECTION — SEND A SIGNAL -->
+    <!-- ===================================================== -->
+    <section class="section contact-section" id="contact">
+      <div class="contact-card-spider spotlight-card reveal">
+        <!-- Spider Signal Radar Pulse -->
+        <div class="spider-signal-radar" aria-hidden="true">
+          <div class="radar-pulse radar-1"></div>
+          <div class="radar-pulse radar-2"></div>
+          <div class="radar-pulse radar-3"></div>
+          <div class="radar-spider-core">
+            <svg viewBox="0 0 100 100" fill="none">
+              <polygon points="50,22 55,29 45,29" fill="#E62429"/>
+              <polygon points="50,31 57,40 50,54 43,40" fill="#E62429"/>
+              <polygon points="50,57 60,72 50,86 40,72" fill="#E62429"/>
+              <path d="M47,35 L28,24 L16,36" stroke="#E62429" stroke-width="3" stroke-linecap="round"/>
+              <path d="M45,41 L22,38 L14,52" stroke="#E62429" stroke-width="3" stroke-linecap="round"/>
+              <path d="M46,47 L24,56 L20,74" stroke="#E62429" stroke-width="3" stroke-linecap="round"/>
+              <path d="M47,53 L32,68 L30,88" stroke="#E62429" stroke-width="3" stroke-linecap="round"/>
+              <path d="M53,35 L72,24 L84,36" stroke="#E62429" stroke-width="3" stroke-linecap="round"/>
+              <path d="M55,41 L78,38 L86,52" stroke="#E62429" stroke-width="3" stroke-linecap="round"/>
+              <path d="M54,47 L76,56 L80,74" stroke="#E62429" stroke-width="3" stroke-linecap="round"/>
+              <path d="M53,53 L68,68 L70,88" stroke="#E62429" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="contact-header">
+          <div class="section-tag contact-tag">
+            <span class="tag-number">05</span>
+            <span class="tag-title">COMMUNICATION ARRAY</span>
+          </div>
+
+          <h2 class="contact-title">
+            NEED A DEVELOPER?<br>
+            <span class="spider-text-glow">Send a signal.</span>
+          </h2>
+
+          <p class="contact-body">
+            Have an idea, a project, or simply want to connect? Send a signal. I'm always open to discussing web architectures, real-world problems, and new opportunities.
+          </p>
+        </div>
+
+        <!-- Primary LinkedIn Action Button -->
+        <div class="contact-cta-wrapper">
+          <a
+            href="https://www.linkedin.com/in/piyush-kumar-jaiswal-761491400/"
+            class="contact-spider-btn magnetic"
+            target="_blank"
+            rel="noopener noreferrer"
+            id="linkedinBtn"
+          >
+            <span class="btn-spider-shine"></span>
+            <span class="contact-btn-text">SEND SIGNAL ON LINKEDIN</span>
+            <svg class="contact-btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M3 13L13 3M13 3H5M13 3V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="contact-links-row">
+          <a href="https://www.linkedin.com/in/piyush-kumar-jaiswal-761491400/" target="_blank" rel="noopener noreferrer" class="contact-pill-spider magnetic">
+            <span class="pill-dot-red"></span>
+            <span>LinkedIn Profile ↗</span>
+          </a>
+          <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="contact-pill-spider magnetic">
+            <span class="pill-dot-red"></span>
+            <span>GitHub Profile ↗</span>
+          </a>
+          <a href="https://camporastudent.vercel.app/" target="_blank" rel="noopener noreferrer" class="contact-pill-spider magnetic">
+            <span class="pill-dot-red"></span>
+            <span>Campora Platform ↗</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================================================== -->
+  <!-- FOOTER — THE FINAL SWING -->
+  <!-- ===================================================== -->
+  <footer class="footer spider-footer">
+    <div class="footer-top-strand"></div>
+    <div class="footer-container">
+      <div class="footer-left">
+        <a class="logo footer-logo magnetic" href="#home">
+          <span class="logo-text">PJ<span class="logo-dot">.</span></span>
+        </a>
+        <div class="footer-mottos">
+          <p class="footer-hero-quote">EVERY GREAT JOURNEY STARTS WITH ONE IDEA.</p>
+          <p class="footer-byline">Designed & Developed by Piyush Jaiswal • <span id="currentYear"></span></p>
+        </div>
+      </div>
+
+      <div class="footer-center">
+        <span class="status-indicator-spider"></span>
+        <span>Built with Vanilla HTML, CSS & JavaScript</span>
+      </div>
+
+      <div class="footer-right">
+        <a href="#home" class="back-top-btn-spider magnetic" id="backToTop" aria-label="Back to top">
+          <span class="back-top-web">🕸️</span>
+          <span>SWING TO TOP</span>
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d="M6 10V2M6 2L2 6M6 2L10 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
