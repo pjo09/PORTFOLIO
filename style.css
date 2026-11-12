@@ -1988,9 +1988,342 @@ h1, h2, h3, h4 {
 .browser-viewport {
   position: relative;
   width: 100%;
-  height: 520px;
+  min-height: 520px;
   background: #09090f;
   overflow: hidden;
+}
+
+.browser-viewport.campora-native-viewport {
+  position: relative;
+  width: 100%;
+  min-height: 520px;
+  background: #09090f;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Subtle Spider Laser Scanner Line */
+.spider-scanner-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #E62429, #ff575c, #E62429, transparent);
+  box-shadow: 0 0 12px #E62429;
+  z-index: 15;
+  opacity: 0.6;
+  animation: scanLine 6s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes scanLine {
+  0% { transform: translateY(0); opacity: 0; }
+  10% { opacity: 0.8; }
+  90% { opacity: 0.8; }
+  100% { transform: translateY(520px); opacity: 0; }
+}
+
+.url-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 6px rgba(16, 185, 129, 0.6);
+  display: inline-block;
+  margin-left: 4px;
+}
+
+/* Native Campora App Interface Mockup */
+.campora-app-preview {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  height: 100%;
+  background: radial-gradient(circle at 50% 0%, rgba(230, 36, 41, 0.08), transparent 70%), #0c0c13;
+}
+
+.app-top-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.app-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.app-brand-name {
+  font-family: var(--font-heading);
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.app-status-tag {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 2px 7px;
+  border-radius: 4px;
+  background: rgba(230, 36, 41, 0.15);
+  color: var(--spider-red);
+  border: 1px solid rgba(230, 36, 41, 0.3);
+}
+
+.app-nav-pills {
+  display: flex;
+  gap: 6px;
+}
+
+.nav-pill {
+  font-size: 10px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-muted);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.2s;
+}
+
+.nav-pill.active {
+  background: rgba(230, 36, 41, 0.2);
+  color: #ffffff;
+  border-color: rgba(230, 36, 41, 0.4);
+}
+
+/* App Hero Search Simulation */
+.app-hero-panel {
+  background: rgba(18, 18, 26, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 10px;
+  padding: 14px 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.app-hero-tag {
+  font-family: var(--font-heading);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--spider-red);
+  margin-bottom: 4px;
+}
+
+.app-hero-title {
+  font-family: var(--font-heading);
+  font-size: 14px;
+  color: #ffffff;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.app-search-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(8, 8, 12, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 6px 10px;
+}
+
+.search-icon {
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.search-placeholder {
+  font-size: 11px;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.search-btn-mini {
+  background: var(--spider-red);
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 4px;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+/* Property Listings Grid */
+.app-listings-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.listing-preview-card {
+  background: rgba(18, 18, 26, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.listing-preview-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(230, 36, 41, 0.4);
+}
+
+.listing-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.listing-type-badge {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  color: var(--spider-red);
+}
+
+.listing-verified-tag {
+  font-size: 9px;
+  font-weight: 700;
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.12);
+  padding: 1px 6px;
+  border-radius: 3px;
+}
+
+.listing-title {
+  font-family: var(--font-heading);
+  font-size: 12px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.listing-loc {
+  font-size: 10px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.listing-amenities {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin: 3px 0;
+}
+
+.listing-amenities span {
+  font-size: 9px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-secondary);
+  padding: 2px 6px;
+  border-radius: 3px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.listing-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 4px;
+  padding-top: 6px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.listing-price {
+  font-family: var(--font-heading);
+  font-size: 12px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.listing-price small {
+  font-size: 9px;
+  color: var(--text-muted);
+}
+
+.listing-rating {
+  font-size: 9px;
+  color: #f59e0b;
+}
+
+/* Bottom CTA Strip */
+.app-preview-cta-strip {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: rgba(20, 20, 30, 0.95);
+  border: 1px solid rgba(230, 36, 41, 0.25);
+  gap: 12px;
+}
+
+.cta-strip-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.app-launch-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #E62429, #b0181d);
+  color: #ffffff;
+  padding: 7px 14px;
+  border-radius: 6px;
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  box-shadow: 0 4px 15px rgba(230, 36, 41, 0.4);
+  transition: all 0.2s;
+  flex-shrink: 0;
+  text-decoration: none;
+}
+
+.app-launch-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(230, 36, 41, 0.6);
+  color: #ffffff;
+}
+
+@media (max-width: 600px) {
+  .app-listings-grid {
+    grid-template-columns: 1fr;
+  }
+  .hide-on-compact {
+    display: none;
+  }
+  .app-nav-pills {
+    display: none;
+  }
+  .app-preview-cta-strip {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+  .app-launch-btn {
+    justify-content: center;
+  }
 }
 
 .campora-iframe {
